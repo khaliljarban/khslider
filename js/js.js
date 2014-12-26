@@ -1,7 +1,4 @@
-jQuery(document).ready(function(){
 
-	jQuery('#sliderloader').loadkhSlider();
-});
 /*
  * 
  * KH SLIDER
