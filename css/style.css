@@ -1,9 +1,7 @@
 
 .relative{position:relative;}
 .flc{clear:both;}
-.flr{float:right;}
 .fll{float:left;}
-
 
 
 .slider_controller{  position:absolute; top:20px; left:20px;}
@@ -18,8 +16,21 @@
 			  	-moz-transition: left 1.5s cubic-bezier(.26, .12, 0, 1);
 			  	-o-transition: left 1.5s cubic-bezier(.26, .12, 0, 1);
 			  	transition: left 1.5s cubic-bezier(.26, .12, 0, 1);}
-  	
 .slider_outer li{width:1000px;}  	
 .slider_outer li img{width:100%;} 
 
+
+/* rtl css  start here */
+.slider_controller.flr{right:20px; left:auto;}
+.slider_arrows.flr{float:right;}
+.flr{float:right;}
+.slider_outer ul.flr{right:0; left:auto;
+				webkit-transition: right 1.5s cubic-bezier(.26, .12, 0, 1);
+			  	-moz-transition: right 1.5s cubic-bezier(.26, .12, 0, 1);
+			  	-o-transition: right 1.5s cubic-bezier(.26, .12, 0, 1);
+			  	transition: right 1.5s cubic-bezier(.26, .12, 0, 1);
+}
+/* rtl css  end here */
+
+ 
  

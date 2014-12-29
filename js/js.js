@@ -3,7 +3,8 @@
  * 
  * KH SLIDER
  * propities= css3, responsive, rtl&ltr, two direction movement
- * ver 1.0
+ * ver 2.0
+ * 
  * 
  */
 (function($) {
@@ -13,12 +14,12 @@
 						  sliderWidth  :805,// (int) the default width of the slider
 						  sliderDuration:3000, // (ms) time between every movement
 						  sliderSpeed:1000,//slider speed by ms
-						  isResponsive:true,
-						  isRtl:false,// true= rtl , false=ltr
-						  isAuto:true, // is auto slider
-						  sliderType:'twodirections', // twodirections=more to left and move the right
+						  isResponsive:true,//bool
+						  isRtl:false,//bool=> true= rtl , false=ltr
+						  isAuto:true, //bool=> is auto slider
+						  sliderType:'twodirections', // twodirections=012321023, skiptofirst=012301230123
 						  controllerType:'nextprev',// nextprev=next & prev ,false= without any controller, points=points contrller
-						  isMobile:false,// true= load support animated for mobile
+						  isMobile:false,//bool=> true= load support animated for mobile
 						  
 						  //// do not need to change
 						  slidersCount:0,
@@ -56,14 +57,20 @@
         if(settings.isAuto)
         	preAutoslider();	
         
+        // load rtl css selectors
+        if(settings.isRtl)
+        	doRtl();
         /*
          * animate to the called index
          */
         function gotoIndext(index){
+        	var directObj={'left':(-1*index*settings.sliderWidth)+'px'};
+        	if(settings.isRtl)
+        		directObj={'right':(-1*index*settings.sliderWidth)+'px'};
         	if(!settings.isMobile)
-        		currentElement.find('ul').css({'left':(-1*index*settings.sliderWidth)+'px'});
+        		currentElement.find('ul').css(directObj);
         	else
-        		currentElement.find('ul').stop().animate({'left':(-1*index*settings.sliderWidth)+'px'},settings.sliderSpeed);
+        		currentElement.find('ul').stop().animate(directObj,settings.sliderSpeed);
         	settings.currentSlider=index;
         	doControllerStatus();
         }
@@ -84,6 +91,9 @@
 		        	case 'twodirections':
 		        		doTwodirection();
 		        	break;
+		        	case 'skiptofirst':
+		        		doTwodirection();
+		        	break;
 	        	}
         	}
         }
@@ -98,6 +108,29 @@
         		gotoThePrev();
         }
         
+        /*
+         * add rtl classes
+         */
+        function doRtl(){
+        	currentElement.find('ul').addClass('flr');
+        	currentElement.find('ul').find('li').addClass('flr');
+        	if(settings.controllerType!=false){
+        		currentElement.find('.slider_controller').addClass('flr');
+        		currentElement.find('.slider_controller').find('.slider_arrows').addClass('flr');
+        	}
+        }
+        
+        /*
+         * when get the last one go to the first
+         */
+        function doSkiptofirst(){
+        	var thenext=whoisnext();
+        	if(thenext!=-1)
+        		gotoIndext(thenext);
+        	else
+        		gotoIndext(0);
+        	
+        }
         /*
          * go to the previus index
          */
@@ -230,11 +263,14 @@
     		html+'</div>';
     		currentElement.append(html);
     		jQuery('.slider_next').click(function(){
-    			gotoTheNext()
+    			if(settings.sliderType=='skiptofirst')
+    				doSkiptofirst();
+    			else
+    				gotoTheNext();
     			settings.sliderLastMoved=new Date().getTime();
     		});
     		jQuery('.slider_prev').click(function(){
-    			gotoThePrev()
+    			gotoThePrev();
     			settings.sliderLastMoved=new Date().getTime();
     		});
     	}
@@ -253,8 +289,5 @@
 			else
 				jQuery('.slider_next').addClass('inactive');
     	}
-    }	
-
-      
-
+    }
 }(jQuery));
