@@ -1,9 +1,9 @@
 
 .relative{position:relative;}
+.absolute{position:absolute; }
 .flc{clear:both;}
 .fll{float:left;}
-
-
+.hiddeImage{opacity:0px;}
 .slider_controller{  position:absolute; top:20px; left:20px;}
 .slider_arrows{cursor:pointer; text-align:center; line-height:50px; float:left;width:50px; height:50px;  background-color:#fff;}
 .slider_arrows:hover{background-color:#ddd;}
@@ -19,7 +19,14 @@
 .slider_outer li{width:1000px;}  	
 .slider_outer li img{width:100%;} 
 
-
+.slider_outer li.absolute{left:0px; top:0px;}
+.slider_outer li.absolute.flr{left:auto; right:0; top:0px;}
+.slider_outer li.fadeinout{opacity:1;
+								-webkit-transition: opacity 1.5s easy-in-out;
+							  	-moz-transition: opacity 1.5s easy-in-out;
+							  	-o-transition: opacity 1.5s easy-in-out;
+							  	transition: opacity 1.5s easy-in-out;}
+.slider_outer li.fadeinout.inactive{opacity:0;}
 /* rtl css  start here */
 .slider_controller.flr{right:20px; left:auto;}
 .slider_arrows.flr{float:right;}
@@ -32,5 +39,10 @@
 }
 /* rtl css  end here */
 
+/* thumbs css start here */
+.slider_thumbs{width:60%; position:absolute; right:20%; text-align:center; bottom:20px;}
+.slider_thumb {cursor:pointer; height:80px; display:inline-block; border:1px solid transparent; margin:0px 5px 8px 5px; width:auto;}
+.slider_thumb.current{border:1px solid #fff;}
+/* thumbs css end here */
  
  
