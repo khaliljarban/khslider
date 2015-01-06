@@ -11,6 +11,8 @@
 .slider_point{cursor:pointer; float:left;width:15px; height:15px; margin:0px 5px 0px 5px; border-radius:15px; background-color:#ddd;}
 .slider_point.current{background-color:#000;}
 .slider_outer{width:100%; height:auto; overflow:hidden;}
+.slider_outer_containter{position:absolute; left:0; width:9999999px;}
+.slider_outer_containter.rtl{left:auto; right:0;}
 .slider_outer ul{width:999999999999px; left:0; position:relative;
 				-webkit-transition: left 1.5s cubic-bezier(.26, .12, 0, 1);
 			  	-moz-transition: left 1.5s cubic-bezier(.26, .12, 0, 1);

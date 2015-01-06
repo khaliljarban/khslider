@@ -1,4 +1,4 @@
-# khslider js & css2 slider 
+# khslider js & css3 slider 
 
 Basic useful feature list:
 
