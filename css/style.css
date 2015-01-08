@@ -1,4 +1,10 @@
-
+/*
+ * KH SLIDER
+ * develope by:khalil jarban
+ * ver 2.3
+ * publish date 8.1.2015
+ * 444802@gmail.com
+ */
 .relative{position:relative;}
 .absolute{position:absolute; }
 .flc{clear:both;}
@@ -22,10 +28,10 @@
 .slider_outer li.absolute{left:0px; top:0px;}
 .slider_outer li.absolute.flr{left:auto; right:0; top:0px;}
 .slider_outer li.fadeinout{opacity:1;
-								-webkit-transition: opacity 1.5s easy-in-out;
-							  	-moz-transition: opacity 1.5s easy-in-out;
-							  	-o-transition: opacity 1.5s easy-in-out;
-							  	transition: opacity 1.5s easy-in-out;}
+								-webkit-transition: opacity 1.5s ease-in-out;
+							  	-moz-transition: opacity 1.5s ease-in-out;
+							  	-o-transition: opacity 1.5s ease-in-out;
+							  	transition: opacity 1.5s ease-in-out;}
 .slider_outer li.fadeinout.inactive{opacity:0;}
 /* rtl css  start here */
 .slider_controller.flr{right:20px; left:auto;}
@@ -44,5 +50,24 @@
 .slider_thumb {cursor:pointer; height:80px; display:inline-block; border:1px solid transparent; margin:0px 5px 8px 5px; width:auto;}
 .slider_thumb.current{border:1px solid #fff;}
 /* thumbs css end here */
+
+
+.title_allowed{position:relative;}
+.title_outer{position:absolute; bottom:-200px; right:60px; padding:20px; background-color:#ddd;
+								-webkit-transition: all 1 ease-in-out;
+							  	-moz-transition: all 1 ease-in-out;
+							  	-o-transition: all 1s ease-in-out;
+							  	transition: all 1s ease-in-out;
+				}
+.title_inner{line-height:40px; font-size:24px; }				
+.title_outer.active{bottom:20%; }
+.subtitle_outer{position:absolute; top:-200px; right:60px; padding:20px; background-color:#ddd;
+								-webkit-transition: all 1 ease-in-out;
+							  	-moz-transition: all 1 ease-in-out;
+							  	-o-transition: all 1s ease-in-out;
+							  	transition: all 1s ease-in-out;
+				}
+.subtitle_outer.active{top:20%; }
+.subtitle_inner{line-height:40px; font-size:24px; }
  
  

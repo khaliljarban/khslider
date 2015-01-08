@@ -1,7 +1,9 @@
 /*
  * KH SLIDER
  * develope by:khalil jarban
- * ver 2.1
+ * ver 2.3
+ * publish date 8.1.2015
+ * 444802@gmail.com
  */
 (function($) {
     $.fn.loadkhSlider = function(options) {
@@ -10,6 +12,8 @@
     	khslider.loadImages();
     	//lod the function that add data-ind to the elements
     	khslider.doIndexes()
+    	//do titles
+    	khslider.doTitles();
         // if the slider work with controllers load it
         khslider.loadController();
 	    // do the controllers current status
@@ -30,12 +34,14 @@
     function khSlider(options,selector){
     	var self=this;
     	var defaults  = {
-				  sliderDuration:3000, // (ms) time between every movement
+				  sliderDuration:2000, // (ms) time between every movement
 				  sliderSpeed:1000,//slider speed by ms
 				  isResponsive:true,//bool
 				  isRtl:false,//bool=> true= rtl , false=ltr
 				  isAuto:true, //bool=> is auto slider
 				  sliderType:'twodirections', // twodirections=012321023, skiptofirst=012301230123
+				  isTitles:true,//bool=> true=show titles, false=hide 
+				  issubTitles:true,//bool=> true=show titles, false=hide 
 				  controllerType:'nextprev',// nextprev=next & prev ,false= without any controller, points=points contrller
 				  isMobile:false,//bool=> true= load support animated for mobile
 				  isThumbs:false,
@@ -54,8 +60,42 @@
     	self.sliderWidth=self.currentElement.width();
     	//set the width of the li
     	self.currentElement.find('ul').find('li').width(self.sliderWidth);
-    	
-    	
+    	// if titles allowed do it
+    	self.doTitles=function(){
+    								if(!self.settings.isTitles) return false;
+    								
+    								self.currentElement.find('ul').find('li').each(function(){
+    									
+    										var elmTitle=$(this).data('title');
+    										if(typeof elmTitle!='undefined'){
+    											$(this).addClass('title_allowed');
+    											var html='';
+    											html+='<div class="title_outer">';
+    												html+='<div class="title_inner">'+elmTitle+'</div>';
+    											html+='</div>';
+    											$(this).append(html);
+    										}
+    											
+    								});
+    								
+    								if(!self.settings.issubTitles) return false;
+    								
+    								self.currentElement.find('ul').find('li').each(function(){
+    									
+										var elmTitle=$(this).data('subtitle');
+										if(typeof elmTitle!='undefined'){
+											$(this).addClass('subtitle_allowed');
+											var html='';
+											html+='<div class="subtitle_outer">';
+												html+='<div class="subtitle_inner">'+elmTitle+'</div>';
+											html+='</div>';
+											$(this).append(html);
+										}
+											
+								});
+    								
+    								
+    							}
     	//save all images to array
     	self.loadImages= function(){
 								                var ind=0;
@@ -157,7 +197,29 @@
 										    		if(self.settings.isThumbs){
 										    			self.dothumbsStatus();
 										    		}
+										    		
+										    		
+										    		if(self.settings.isTitles){
+										    			self.dotitlesStatus();
+										    		}
+										    			
+										    		
+										    		
 										    	}
+    	//change the status of the title
+    	self.dotitlesStatus=function(){
+    										if($('.title_outer').length>0){
+    											$('.title_outer.active').removeClass('active');
+    											self.currentElement.find('ul').find('li[data-ind="'+self.currentSlider+'"]').find('.title_outer').addClass('active');
+    										}
+    										if($('.subtitle_outer').length>0){
+    											$('.subtitle_outer.active').removeClass('active');
+    											self.currentElement.find('ul').find('li[data-ind="'+self.currentSlider+'"]').find('.subtitle_outer').addClass('active');
+    										}
+    	
+    									}
+    	
+    	
 		//do next & prev status inactive css
     	self.donextprevStatus=function (){
 										    		if(self.currentSlider>0)
@@ -211,7 +273,7 @@
 				        		self.doTwodirection();
 				        	break;
 				        	case 'skiptofirst':
-				        		self.doTwodirection();
+				        		self.doSkiptofirst();
 				        	break;
 			        	}
 		        	}
