@@ -41,7 +41,7 @@
 				  isAuto:true, //bool=> is auto slider
 				  sliderType:'twodirections', // twodirections=012321023, skiptofirst=012301230123
 				  isTitles:true,//bool=> true=show titles, false=hide 
-				  issubTitles:true,//bool=> true=show titles, false=hide 
+				  issubTitles:true,//bool=> true=show sub titles, false=hide 
 				  controllerType:'nextprev',// nextprev=next & prev ,false= without any controller, points=points contrller
 				  isMobile:false,//bool=> true= load support animated for mobile
 				  isThumbs:false,

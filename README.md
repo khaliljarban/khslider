@@ -8,7 +8,25 @@ Basic useful feature list:
  * more than one type of animation 
  * more than one type of controller 
  
- 
+ html specification:
+```html
+    <div id="sliderloader"  class="slider_outer relative  fll">
+	<ul class="fll">
+		<li data-title="Day on the desert" data-subtitle="need more to eat"   class="fll relative">
+			<img src="images/img01.jpg" title="light" alt="desert" />
+		</li>	
+		<li data-title="Day on the desert"  class="fll relative">
+			<img src="images/img02.jpg"   alt="desert" />
+		</li>	
+		<li data-title="Day on the desert"  class="fll relative">
+			<img src="images/img03.jpg" title="light" alt="desert" />
+		</li>	
+		<li data-title="Day on the desert" data-subtitle="need more to eat" class="fll relative">
+			<img src="images/img04.jpg" title="light" alt="desert" />
+		</li>	 
+	</ul>
+</div>    
+```
  
 
 load the slider:
@@ -32,15 +50,21 @@ load the slider:
 						  controllerType:'nextprev', // nextprev=next & prev ,false= without any controller, points=points contrller
 						  isMobile:false, //bool=> true= load support animated for mobile
 						  isThumbs:false,//bool => turn on/off thumbs
+						  isTitles:true,//bool=> true=show titles, false=hide 
+				  		  issubTitles:true,//bool=> true=show sub titles, false=hide 
 						  };
 			jQuery('#sliderloader').loadkhSlider(settings);
 	 });
  
  ```
-
-
-
-
  
+ 
+ 
+
+
+
+
+ authors:
+> khalil jarban
 
 
